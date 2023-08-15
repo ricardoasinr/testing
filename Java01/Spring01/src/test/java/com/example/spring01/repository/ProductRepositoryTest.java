@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,15 +20,41 @@ class ProductRepositoryTest {
     private ProductRepository productRepository;
 
     @Test
-    void saveMethod() {
+    void saveMethodMult() {
         //Crear el producto
 
         Product product = new Product ();
-        product.setName("Producto 1");
-        product.setDescription("Producto 1");
+        product.setName("Producto 6");
+        product.setDescription("Producto 6");
         product.setPrice(new BigDecimal( 2000));
         product.setActive(true);
-        product.setSku("2030FDS");
+        product.setSku("904KLDF");
+        product.setUrl("https://www.shutterstock.com/shutterstock/photos/78776677/display_1500/stock-photo-good-price-sticker-78776677.jpg");
+
+        Product product5 = new Product ();
+        product5.setName("Producto 5");
+        product5.setDescription("Producto 2");
+        product5.setPrice(new BigDecimal( 2000));
+        product5.setActive(true);
+        product5.setSku("0002");
+        product5.setUrl("https://www.shutterstock.com/shutterstock/photos/78776677/display_1500/stock-photo-good-price-sticker-78776677.jpg");
+
+
+        productRepository.saveAll(
+                List.of(product5, product));
+
+    }
+
+    @Test
+    void saveMethodOnlyOne() {
+        //Crear el producto
+
+        Product product = new Product ();
+        product.setName("Producto3");
+        product.setDescription("Producto3");
+        product.setPrice(new BigDecimal( 20000));
+        product.setActive(true);
+        product.setSku("8943");
         product.setUrl("https://www.shutterstock.com/shutterstock/photos/78776677/display_1500/stock-photo-good-price-sticker-78776677.jpg");
         //Mostrar lo que se guardó
         Product saveObject = productRepository.save(product);
@@ -35,6 +62,8 @@ class ProductRepositoryTest {
         System.out.println("Id del producto: "+saveObject.getId());
         System.out.println("Nombre del producto: "+saveObject.getName());
         System.out.println(saveObject.toString());
+
+
 
     }
 
@@ -48,4 +77,40 @@ class ProductRepositoryTest {
         System.out.println("UPDATE: Nombre del producto: "+saveObject.getName());
         productRepository.save(product);
     }
+
+    @Test
+    void findAllMethod() {
+        List<Product> productList = productRepository.findAll();
+        productList.forEach((p) -> {
+            System.out.println("UPDATE: Nombre del producto: "+p.getName());
+        });
+    }
+
+    @Test
+    void deleteById(){
+        productRepository.deleteById(11L);
+    }
+
+    @Test
+    void deleteMethod(){
+        //Encontramos
+        Product product = productRepository.findById(3L).get();
+
+        //Eliminamos
+        productRepository.delete(product);
+
+    }
+
+    @Test
+    void deleteAllMethod(){
+        //Encontramos
+        Product product1 = productRepository.findById(14L).get();
+        Product product2 = productRepository.findById(18L).get();
+
+        //Eliminamos
+        productRepository.deleteAll(List.of(product1, product2));
+
+    }
+
+
 }

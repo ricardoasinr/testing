@@ -11,7 +11,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-
 class ProductRepositoryTest {
     //Debemos inyectar la interface que hereda los métodos
     //del JPA Repository
@@ -28,7 +27,7 @@ class ProductRepositoryTest {
         product.setDescription("Producto 6");
         product.setPrice(new BigDecimal( 2000));
         product.setActive(true);
-        product.setSku("904KLDF");
+        product.setSku("904LKLDF");
         product.setUrl("https://www.shutterstock.com/shutterstock/photos/78776677/display_1500/stock-photo-good-price-sticker-78776677.jpg");
 
         Product product5 = new Product ();
@@ -36,7 +35,7 @@ class ProductRepositoryTest {
         product5.setDescription("Producto 2");
         product5.setPrice(new BigDecimal( 2000));
         product5.setActive(true);
-        product5.setSku("0002");
+        product5.setSku("000LLL2");
         product5.setUrl("https://www.shutterstock.com/shutterstock/photos/78776677/display_1500/stock-photo-good-price-sticker-78776677.jpg");
 
 
@@ -50,11 +49,11 @@ class ProductRepositoryTest {
         //Crear el producto
 
         Product product = new Product ();
-        product.setName("Producto3");
-        product.setDescription("Producto3");
+        product.setName("Producto 3J");
+        product.setDescription("Producto l");
         product.setPrice(new BigDecimal( 20000));
         product.setActive(true);
-        product.setSku("8943");
+        product.setSku("02");
         product.setUrl("https://www.shutterstock.com/shutterstock/photos/78776677/display_1500/stock-photo-good-price-sticker-78776677.jpg");
         //Mostrar lo que se guardó
         Product saveObject = productRepository.save(product);
@@ -82,7 +81,7 @@ class ProductRepositoryTest {
     void findAllMethod() {
         List<Product> productList = productRepository.findAll();
         productList.forEach((p) -> {
-            System.out.println("UPDATE: Nombre del producto: "+p.getName());
+            System.out.println("Nombre del producto: "+p.getName());
         });
     }
 

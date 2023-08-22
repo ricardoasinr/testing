@@ -29,10 +29,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     //Realizar consultas usando la anotación Query
     //Usar @Query para trabajar con SQL NATIVO
     //1. Con posición de parametros (SQL NATIVO)
-    @Query(value= "SELECT * from tbl_products p where p.name =?1 or p.description =?2", nativeQuery = true)
+    @Query(value= "SELECT * from Products p where p.name =?1 or p.description =?2", nativeQuery = true)
     Product findByNameOrDescriptionNATIVOLIndexParam(String name, String description);
     //2. Con named parameters (SQL NATIVO)
-    @Query("SELECT p from Product p where p.name =:name or p.description =:description")
+    @Query(value = "SELECT * from Products p where p.name =:name or p.description =:description", nativeQuery = true)
     Product findByNameOrDescriptionNATIVOParam(String name, String description);
 
     //Realizar consultas usando @NamedQuery (@NamedQueries)

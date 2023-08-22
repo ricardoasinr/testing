@@ -12,7 +12,7 @@ public class NativeSQLQueriesTest {
 
     @Test
     void findByNameOrDescriptionNATIVOLIndexParamMethod(){
-        Product product = productRepository.findByNameOrDescriptionNATIVOLIndexParam("P", "Producto 1");
+        Product product = productRepository.findByNameOrDescriptionNATIVOLIndexParam("P", "Producto L");
         System.out.println(product.getId());
         System.out.println(product.getName());
     }

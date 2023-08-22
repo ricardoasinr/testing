@@ -13,6 +13,43 @@ import java.time.LocalDateTime;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+//@NamedQuery(
+//        name = "Product.findByPrice",
+//        query = "SELECT p FROM Product p where p.price =:price"
+//)
+
+
+@NamedQueries({
+        @NamedQuery(
+                name = "Product.findByPrice",
+                query = "SELECT p FROM Product p where p.price =:price"
+
+        ),
+
+        @NamedQuery(
+                name = "Product.findAllOrderByNameDesc",
+                query = "SELECT p FROM Product p ORDER BY p.name DESC"
+        ),
+
+
+})
+
+@NamedNativeQueries({
+
+        @NamedNativeQuery(
+                name = "Product.findByDescription",
+                query = "SELECT *  FROM tbl_products  p where p.description =:description",
+                resultClass = Product.class
+        ),
+
+        @NamedNativeQuery(
+                name = "Product.findAllOrderByNameASC",
+                query = "SELECT * FROM tbl_products p ORDER BY p.name ASC",
+                resultClass = Product.class
+        ),
+
+
+})
 @Table(
         name = "tbl_products",
         schema = "testing",

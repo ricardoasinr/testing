@@ -50,4 +50,15 @@ public class OneToOneUnidirectionalMappingTest {
         orderRepository.save(order);
     }
 
+    @Test
+    void getOrderMethod(){
+
+        Long id = 1L;
+        Order order = orderRepository.findById(id).get();
+        System.out.println("Order: "+ order.toString());
+
+
+
+    }
+
 }

@@ -57,6 +57,13 @@ public class OneToOneUnidirectionalMappingTest {
         Order order = orderRepository.findById(id).get();
         System.out.println("Order: "+ order.toString());
 
+    }
+
+    @Test
+    void deleteOrderMethod(){
+
+        Long id = 1L;
+         orderRepository.deleteById(id);
 
 
     }

@@ -8,6 +8,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -26,9 +28,22 @@ public class Order {
     @UpdateTimestamp
     private  LocalDateTime LastUpdated;
 
-    @OneToOne (cascade = CascadeType.ALL)
+    @OneToOne (cascade = CascadeType.ALL, mappedBy = "order")
     @JoinColumn (name = "billing_address_id", referencedColumnName = "id")
     private Address billingAdresses;
+
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id", referencedColumnName = "id")
+    private Set<OrderItem> orderItems = new HashSet<>();
+
+    public BigDecimal getTotalAmount(){
+        BigDecimal amount = new BigDecimal(0);
+        for (OrderItem item:this.orderItems){
+            amount = amount.add(item.getPrice());
+        }
+        return  amount;
+    }
 
 
 
